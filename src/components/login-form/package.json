@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "login-form",
+  "typings": "login-form.tsx"
+}
