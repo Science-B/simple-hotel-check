@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "hotel-card",
+  "typings": "hotel-card.jsx"
+}

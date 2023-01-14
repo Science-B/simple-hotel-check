@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "main-card",
+  "typings": "main-card.jsx"
+}

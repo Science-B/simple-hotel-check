@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "favorited-card",
+  "typings": "favorited-card.jsx"
+}
