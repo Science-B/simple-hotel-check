@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "main": "button",
+  "typings": "button.jsx"
+}

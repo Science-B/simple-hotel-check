@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import TextField from "../form/text-field";
+import Button from "../button";
 import { validator } from "../../utils/validator";
 
 import s from "./login-form.module.scss";
@@ -76,9 +77,7 @@ export default function LogInForm() {
               onChange={handleChange}
               error={errors.password}
             />
-            <button type="submit" disabled={!isValid} className={s.formButton}>
-              Войти
-            </button>
+            <Button type="submit" disabled={!isValid} name="Войти" />
           </form>
         </div>
       </div>

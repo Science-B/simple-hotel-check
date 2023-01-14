@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 import s from "./text-field.module.scss";
 
 export default function TextField({
@@ -7,17 +9,21 @@ export default function TextField({
   value,
   onChange,
   error,
+  booking,
 }) {
   const handleChange = ({ target }) => {
     onChange({ name: target.name, value: target.value });
   };
   return (
     <div className={s.form}>
-      <label className={s.formLabel} htmlFor={name}>
+      <label
+        className={classNames(s.formLabel, booking && s.booking)}
+        htmlFor={name}
+      >
         {label}
       </label>
       <input
-        className={s.formInput}
+        className={classNames(s.formInput, booking && s.booking)}
         type={type}
         name={name}
         value={value}
