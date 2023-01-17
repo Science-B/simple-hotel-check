@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 import s from "./header.module.scss";
 
 import logOutIcon from "../../icons/logOut.svg";
 
 export function Header() {
+  const { logOut } = useAuth();
   let navigate = useNavigate();
 
-  function handleExit() {
-    navigate("/");
-  }
+  const handleExit = () => {
+    logOut(() => navigate("/", { replace: true }));
+  };
 
   return (
     <div className={s.header}>
