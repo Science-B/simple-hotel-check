@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import TextField from "../form/text-field";
 import Button from "../button";
+
 import { validator } from "../../utils/validator";
 
 import s from "./login-form.module.scss";
 
 export default function LogInForm() {
+  let navigate = useNavigate();
   const [data, setData] = useState({
     login: "",
     password: "",
@@ -36,6 +39,7 @@ export default function LogInForm() {
     const isValid = validate();
     if (!isValid) return;
     console.log(data);
+    navigate("/main");
   };
 
   const validatorConfig = {

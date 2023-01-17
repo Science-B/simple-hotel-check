@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import s from "./button.module.scss";
 
-export default function Button({ name, disabled, type, booking }) {
+export default function Button({ name, disabled, type, path }) {
   return (
     <button
       className={s.formButton}
