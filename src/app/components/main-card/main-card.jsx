@@ -3,8 +3,10 @@ import Slider from "../slider/";
 import s from "./main-card.module.scss";
 
 import arrowIcon from "../../icons/arrow.svg";
+import HotelCard from "../hotel-card/hotel-card";
 
-export default function MainCard() {
+export default function MainCard({ hotels }) {
+  console.log("эх", hotels);
   return (
     <div className={s.mainCard}>
       <div className={s.wrap}>
@@ -21,6 +23,7 @@ export default function MainCard() {
           <div>Добавлено в Избранное:</div>
           <div>count отеля</div>
         </div>
+        <div>{hotels && hotels.map((el) => <HotelCard />)}</div>
       </div>
     </div>
   );

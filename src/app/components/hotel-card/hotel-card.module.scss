@@ -1,0 +1,52 @@
+.hotelCard {
+  display: flex;
+}
+
+.logo {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(65, 82, 46, 0.05);
+  margin-right: 24px;
+}
+
+.hotelInfo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 116px;
+}
+
+.name {
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 22px;
+  color: #424242;
+}
+
+.dateGroup {
+  display: flex;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #878787;
+}
+
+.date {
+  margin-right: 10px;
+}
+
+.rectangle {
+  color: #c4c4c4;
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.duration {
+  margin-right: 10px;
+}
+
+.priceGroup {
+}

@@ -5,7 +5,7 @@ import hotelService from "../services/hotels-service";
 const hotelsSlice = createSlice({
   name: "hotels",
   initialState: {
-    entities: null,
+    entities: [],
     isLoading: true,
     error: null,
   },
