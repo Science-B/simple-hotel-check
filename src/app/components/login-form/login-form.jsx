@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 
 import TextField from "../form/text-field";
 import Button from "../button";
@@ -8,10 +7,12 @@ import Button from "../button";
 import { validator } from "../../utils/validator";
 
 import s from "./login-form.module.scss";
+import { useDispatch } from "react-redux";
+import { loggedIn } from "../../store/user";
 
 export default function LogInForm() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { logIn } = useAuth();
   const [data, setData] = useState({
     login: "",
     password: "",
@@ -40,9 +41,9 @@ export default function LogInForm() {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    console.log(data);
-
-    logIn(data, () => navigate("/main", { replace: true }));
+    // localStorage.setItem("current-user", JSON.stringify(data));
+    dispatch(loggedIn(data));
+    navigate("/main", { replace: true });
   };
 
   const validatorConfig = {

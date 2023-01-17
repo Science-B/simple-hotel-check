@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { loggedOut } from "../../store/user";
 
 import s from "./header.module.scss";
 
 import logOutIcon from "../../icons/logOut.svg";
 
 export function Header() {
-  const { logOut } = useAuth();
+  const dispatch = useDispatch();
   let navigate = useNavigate();
 
   const handleExit = () => {
-    logOut(() => navigate("/", { replace: true }));
+    dispatch(loggedOut());
+    navigate("/", { replace: true });
   };
 
   return (
