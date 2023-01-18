@@ -15,6 +15,7 @@ export default function HotelCard({
   onClick,
   isLiked,
   rate,
+  price,
 }) {
   return (
     <div>
@@ -56,7 +57,7 @@ export default function HotelCard({
               />
             </svg>
             <div>
-              <div>Price: 23 195 P</div>
+              <div>Price: {price} ₽</div>
             </div>
           </div>
         </div>

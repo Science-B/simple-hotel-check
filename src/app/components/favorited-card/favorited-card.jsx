@@ -28,6 +28,8 @@ export default function FavoritedCard({ favoritedHotels, city, onClick }) {
                 date={hotel.date}
                 id={hotel.id}
                 isFavorited={true}
+                price={hotel.price}
+                rate={hotel.rate}
                 onClick={onClick}
               />
             ))}

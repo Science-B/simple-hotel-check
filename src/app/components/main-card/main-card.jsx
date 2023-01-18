@@ -37,6 +37,7 @@ export default function MainCard({ hotels, city, onClick, count, isLiked }) {
                 onClick={onClick}
                 isLiked={isLiked}
                 rate={hotel.rate}
+                price={hotel.price}
               />
             ))
           ) : (

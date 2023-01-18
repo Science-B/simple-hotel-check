@@ -28,6 +28,7 @@ export default function TextField({
         name={name}
         value={value}
         onChange={handleChange}
+        min={value}
       />
       {error && <div className={s.error}>{error}</div>}
     </div>

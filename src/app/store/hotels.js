@@ -9,8 +9,6 @@ const hotelsSlice = createSlice({
   name: "hotels",
   initialState: {
     entities: [],
-    date: formatDate(),
-    days: "1",
     city: "Москва",
     isLoading: true,
     error: null,
@@ -45,6 +43,7 @@ export const loadHotelsList = (city, days, date) => async (dispatch) => {
         rate: getRandomInt(1, 5),
         date: date ? date : formatDate(),
         days: days ? days : "1",
+        price: getRandomInt(15, 35) + " " + getRandomInt(111, 999),
       };
     });
 
