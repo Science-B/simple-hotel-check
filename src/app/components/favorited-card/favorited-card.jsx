@@ -16,7 +16,7 @@ export default function FavoritedCard() {
             <div>+-</div>
           </div>
         </div>
-        <HotelCard />
+        <div className={s.hotels}></div>
       </div>
     </div>
   );

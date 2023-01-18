@@ -51,6 +51,9 @@ export default function LogInForm() {
       isRequired: {
         message: "Логин обязателен для заполнения",
       },
+      сyrillic: {
+        message: "Логин содержит кириллицу или спец. символы",
+      },
     },
     password: {
       isRequired: {
@@ -59,6 +62,9 @@ export default function LogInForm() {
       min: {
         message: "Пароль должен состаять миниму из 8 символов",
         value: 8,
+      },
+      сyrillic: {
+        message: "Пароль содержит кириллицу или спец. символы",
       },
     },
   };

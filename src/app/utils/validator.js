@@ -15,6 +15,10 @@ export function validator(data, config) {
         statusValidate = data.length < config.value;
         break;
       }
+      case "сyrillic": {
+        const cyrillicRegExp = /^[A-Za-z0-9]+$/;
+        statusValidate = !cyrillicRegExp.test(data);
+      }
       default:
         break;
     }

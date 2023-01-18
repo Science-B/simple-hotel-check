@@ -31,7 +31,6 @@
 }
 
 .location {
-  max-width: 192px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
@@ -48,4 +47,34 @@
 
 .favoritedCount {
   display: flex;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 22px;
+  color: #424242;
+  margin-bottom: 10px;
+}
+
+.count {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 22px;
+  color: #41522e;
+  margin: 0px 4px;
+}
+.hotels {
+  max-height: 430px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.hotels::-webkit-scrollbar {
+  width: 3px;
+}
+
+.hotels::-webkit-scrollbar-thumb {
+  background: #41522e;
+}
+
+.hotels::-webkit-scrollbar-track-piece {
+  background: #e7e7e7;
 }

@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import TextField from "../form/text-field";
 import Button from "../button/button";
 import { formatDate } from "../../utils/formatDate";
 
+import { loadHotelsList } from "../../store/hotels";
+
 import s from "./booking-card.module.scss";
 
 export default function BookingCard() {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     location: "",
     date: "",
@@ -31,6 +35,7 @@ export default function BookingCard() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(loadHotelsList(data.location, data.days, data.date));
     console.log(data);
   };
 

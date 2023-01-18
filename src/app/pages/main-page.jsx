@@ -15,7 +15,7 @@ export default function MainPage() {
   useEffect(() => {
     dispatch(loadHotelsList());
   }, []);
-  const { hotels } = useSelector(getHotels());
+  const hotels = useSelector(getHotels());
   return (
     <div>
       <Header />
@@ -24,7 +24,12 @@ export default function MainPage() {
           <BookingCard />
           <FavoritedCard />
         </div>
-        <MainCard hotels={hotels} />
+        <MainCard
+          hotels={hotels.entities}
+          city={hotels.city}
+          days={hotels.days}
+          date={hotels.date}
+        />
       </div>
     </div>
   );

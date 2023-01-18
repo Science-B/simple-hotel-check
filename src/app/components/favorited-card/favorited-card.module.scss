@@ -1,6 +1,6 @@
 .favoritedCard {
   width: 360px;
-  max-height: 333px;
+  max-height: 400px;
   background-color: #ffffff;
   box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
   border-radius: 16px;
@@ -32,4 +32,23 @@
 
 .priceFilter {
   display: flex;
+  margin-bottom: 10px;
+}
+
+.hotels {
+  max-height: 210px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.hotels::-webkit-scrollbar {
+  width: 3px;
+}
+
+.hotels::-webkit-scrollbar-thumb {
+  background: #41522e;
+}
+
+.hotels::-webkit-scrollbar-track-piece {
+  background: #e7e7e7;
 }
