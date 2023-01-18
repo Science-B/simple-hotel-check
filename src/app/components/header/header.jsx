@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loggedOut } from "../../store/user";
-
+import { allHotelsRemoved } from "../../store/favoritedHotels";
 import s from "./header.module.scss";
 
 import logOutIcon from "../../icons/logOut.svg";
@@ -12,6 +12,7 @@ export function Header() {
 
   const handleExit = () => {
     dispatch(loggedOut());
+    dispatch(allHotelsRemoved());
     navigate("/", { replace: true });
   };
 

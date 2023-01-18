@@ -14,10 +14,12 @@ import storage from "redux-persist/lib/storage";
 
 import hotelsReducer from "./hotels";
 import userReducer from "./user";
+import favoritedHotelsReducer from "./favoritedHotels";
 
 const rootReducer = combineReducers({
   hotels: hotelsReducer,
   user: userReducer,
+  favoritedHotels: favoritedHotelsReducer,
 });
 
 const persistConfig = {

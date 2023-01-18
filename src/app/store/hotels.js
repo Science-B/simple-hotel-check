@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { formatDate } from "../utils/formatDate";
 
 import hotelService from "../services/hotels-service";
+import { getRandomInt } from "../utils/getRandomInt";
 
 const hotelsSlice = createSlice({
   name: "hotels",
@@ -20,10 +21,7 @@ const hotelsSlice = createSlice({
     },
     hotelsRecived: (state, action) => {
       state.entities = action.payload.hotels;
-      console.log("action payload", action.payload.hotels);
       state.city = action.payload.city || state.city;
-      state.date = action.payload.date || state.date;
-      state.days = action.payload.days || state.days;
       state.isLoading = false;
     },
     hotelsRequestFailed: (state, action) => {
@@ -40,7 +38,22 @@ export const loadHotelsList = (city, days, date) => async (dispatch) => {
   dispatch(hotelsRequested());
   try {
     const { results } = await hotelService.get(city ? city : "Москва");
-    dispatch(hotelsRecived({ ...results, city, days, date }));
+
+    const hotels = results.hotels.map((el) => {
+      return {
+        ...el,
+        rate: getRandomInt(1, 5),
+        date: date ? date : formatDate(),
+        days: days ? days : "1",
+      };
+    });
+
+    dispatch(
+      hotelsRecived({
+        ...{ hotels },
+        city,
+      })
+    );
   } catch (error) {
     dispatch(hotelsRequestFailed(error.message));
   }

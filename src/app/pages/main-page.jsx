@@ -9,6 +9,11 @@ import MainCard from "../components/main-card/main-card";
 import { getHotels, loadHotelsList } from "../store/hotels";
 
 import s from "./main-page.module.scss";
+import {
+  addHotel,
+  getFavoritedHotels,
+  removeHotel,
+} from "../store/favoritedHotels";
 
 export default function MainPage() {
   const dispatch = useDispatch();
@@ -16,19 +21,30 @@ export default function MainPage() {
     dispatch(loadHotelsList());
   }, []);
   const hotels = useSelector(getHotels());
+  const favoritedHotels = useSelector(getFavoritedHotels());
+
+  const handleClick = (id) => {
+    const favoritedHotel = hotels.entities.filter((hotel) => hotel.id === id);
+    favoritedHotels.entities.includes(favoritedHotel[0])
+      ? dispatch(removeHotel(favoritedHotel[0].id))
+      : dispatch(addHotel(favoritedHotel[0]));
+  };
+  const handleToggleFavorited = () => {};
   return (
     <div>
       <Header />
       <div className={s.wrapper}>
         <div className={s.row}>
           <BookingCard />
-          <FavoritedCard />
+          <FavoritedCard
+            favoritedHotels={favoritedHotels.entities}
+            onClick={handleClick}
+          />
         </div>
         <MainCard
           hotels={hotels.entities}
-          city={hotels.city}
-          days={hotels.days}
-          date={hotels.date}
+          onClick={handleClick}
+          count={favoritedHotels.entities.length}
         />
       </div>
     </div>

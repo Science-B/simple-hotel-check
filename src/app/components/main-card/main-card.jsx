@@ -5,8 +5,9 @@ import s from "./main-card.module.scss";
 import arrowIcon from "../../icons/arrow.svg";
 import HotelCard from "../hotel-card/hotel-card";
 import { displayDate } from "../../utils/displayDate";
+import { formatDate } from "../../utils/formatDate";
 
-export default function MainCard({ hotels, city, days, date }) {
+export default function MainCard({ hotels, city, onClick, count, isLiked }) {
   return (
     <div className={s.mainCard}>
       <div className={s.wrap}>
@@ -16,18 +17,27 @@ export default function MainCard({ hotels, city, days, date }) {
             <img className={s.arrow} src={arrowIcon} alt="arrow" />
             <div className={s.location}>{city}</div>
           </div>
-          <div className={s.date}>{displayDate(date)}</div>
+          <div className={s.date}>{displayDate(formatDate())}</div>
         </div>
         <Slider />
         <div className={s.favoritedCount}>
           <div>Добавлено в Избранное:</div>
-          <span className={s.count}>count</span>
+          <span className={s.count}>{count}</span>
           <div> отеля</div>
         </div>
         <div className={s.hotels}>
           {hotels.length ? (
             hotels.map((hotel) => (
-              <HotelCard name={hotel.label} days={days} date={date} />
+              <HotelCard
+                key={hotel.id}
+                name={hotel.label}
+                days={hotel.days}
+                date={hotel.date}
+                id={hotel.id}
+                onClick={onClick}
+                isLiked={isLiked}
+                rate={hotel.rate}
+              />
             ))
           ) : (
             <p> Отели не найдены</p>

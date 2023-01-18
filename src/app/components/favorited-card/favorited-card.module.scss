@@ -32,7 +32,15 @@
 
 .priceFilter {
   display: flex;
-  margin-bottom: 10px;
+}
+
+.btn {
+  background: #ffffff;
+  border: 1px solid #41522e;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px;
+  margin-right: 8px;
 }
 
 .hotels {
