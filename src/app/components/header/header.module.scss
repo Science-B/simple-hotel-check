@@ -21,6 +21,14 @@
   cursor: pointer;
 }
 
+.logOutGroup:hover {
+  opacity: 0.6;
+}
+
+.logOutGroup:active {
+  opacity: 0.8;
+}
+
 .logOutIcon {
   margin-left: 15px;
 }
