@@ -35,7 +35,11 @@ export default function MainCard() {
             <img className={s.arrow} src={arrowIcon} alt="arrow" />
             <div className={s.location}>{city}</div>
           </div>
-          <div className={s.date}>{displayDate(formatDate())}</div>
+          <div className={s.date}>
+            {hotels.length
+              ? displayDate(hotels[0].date)
+              : displayDate(formatDate())}
+          </div>
         </div>
         <Slider />
         <div className={s.favoritedCount}>

@@ -36,7 +36,11 @@ export default function HotelCard({
               <div className={s.rectangle}>-</div>
               <div className={s.duration}>{`${days} дней`}</div>
             </div>
-            <div>rate:{rate}</div>
+            <div>
+              {getRateStars(rate).map((el) =>
+                el === true ? <img src={goldenStar} /> : <img src={emptyStar} />
+              )}
+            </div>
           </div>
         </div>
 
