@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { useDispatch } from "react-redux";
 
 import TextField from "../form/text-field";
 import Button from "../button/button";
-import { formatDate } from "../../utils/formatDate";
 
 import { loadHotelsList } from "../../store/hotels";
+
+import { formatDate } from "../../utils/formatDate";
 
 import s from "./booking-card.module.scss";
 
@@ -26,18 +28,6 @@ export default function BookingCard() {
       days: "1",
     }));
   }, []);
-  const handleChange = (target) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loadHotelsList(data.location, data.days, data.date));
-    console.log(data);
-  };
 
   return (
     <div className={s.bookingCard}>
@@ -73,4 +63,17 @@ export default function BookingCard() {
       </div>
     </div>
   );
+
+  function handleChange(target) {
+    setData((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(loadHotelsList(data.location, data.days, data.date));
+    console.log(data);
+  }
 }

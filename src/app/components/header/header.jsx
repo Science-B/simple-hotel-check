@@ -1,20 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { loggedOut } from "../../store/user";
 import { allHotelsRemoved } from "../../store/favoritedHotels";
+
 import s from "./header.module.scss";
 
 import logOutIcon from "../../icons/logOut.svg";
 
 export function Header() {
   const dispatch = useDispatch();
-  let navigate = useNavigate();
-
-  const handleExit = () => {
-    dispatch(loggedOut());
-    dispatch(allHotelsRemoved());
-    navigate("/", { replace: true });
-  };
+  const navigate = useNavigate();
 
   return (
     <div className={s.header}>
@@ -25,4 +21,9 @@ export function Header() {
       </div>
     </div>
   );
+  function handleExit() {
+    dispatch(loggedOut());
+    dispatch(allHotelsRemoved());
+    navigate("/", { replace: true });
+  }
 }

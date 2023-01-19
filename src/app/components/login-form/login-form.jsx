@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
+
+import { loggedIn } from "../../store/user";
 
 import TextField from "../form/text-field";
 import Button from "../button";
@@ -7,8 +11,6 @@ import Button from "../button";
 import { validator } from "../../utils/validator";
 
 import s from "./login-form.module.scss";
-import { useDispatch } from "react-redux";
-import { loggedIn } from "../../store/user";
 
 export default function LogInForm() {
   const dispatch = useDispatch();
@@ -19,32 +21,10 @@ export default function LogInForm() {
   });
   const [errors, setErrors] = useState({});
 
-  const handleChange = (target) => {
-    setData((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
-  };
-
-  const validate = () => {
-    const errors = validator(data, validatorConfig);
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
   const isValid = Object.keys(errors).length === 0;
   useEffect(() => {
     validate();
   }, [data]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const isValid = validate();
-    if (!isValid) return;
-    // localStorage.setItem("current-user", JSON.stringify(data));
-    dispatch(loggedIn(data));
-    navigate("/main", { replace: true });
-  };
 
   const validatorConfig = {
     login: {
@@ -98,4 +78,25 @@ export default function LogInForm() {
       <div className={s.background}></div>
     </div>
   );
+
+  function handleChange(target) {
+    setData((prevState) => ({
+      ...prevState,
+      [target.name]: target.value,
+    }));
+  }
+
+  function validate() {
+    const errors = validator(data, validatorConfig);
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const isValid = validate();
+    if (!isValid) return;
+    dispatch(loggedIn(data));
+    navigate("/main", { replace: true });
+  }
 }

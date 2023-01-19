@@ -1,12 +1,14 @@
 import classNames from "classnames";
 
+import { getRateStars } from "../../utils/getRateStars";
 import { displayDate } from "../../utils/displayDate";
 
 import s from "./hotel-card.module.scss";
 
 import logo from "../../icons/logo.svg";
-import heart from "../../icons/heart.svg";
-import { getRateStars } from "../../utils/getRateStars";
+import goldenStar from "../../icons/goldenStar.svg";
+import emptyStar from "../../icons/emptyStar.svg";
+
 export default function HotelCard({
   isFavorited,
   name,
@@ -18,7 +20,6 @@ export default function HotelCard({
   rate,
   price,
 }) {
-  console.log("rate", getRateStars(rate));
   return (
     <div>
       <div className={s.hotelCard}>
@@ -55,7 +56,7 @@ export default function HotelCard({
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 className={classNames(s.heart, isLiked && s.isLiked)}
-                onClick={() => onClick(id)}
+                onClick={() => onClick(id, isLiked)}
               />
             </svg>
             <div>

@@ -11,9 +11,6 @@ export default function TextField({
   error,
   booking,
 }) {
-  const handleChange = ({ target }) => {
-    onChange({ name: target.name, value: target.value });
-  };
   return (
     <div className={s.form}>
       <label
@@ -33,4 +30,7 @@ export default function TextField({
       {error && <div className={s.error}>{error}</div>}
     </div>
   );
+  function handleChange({ target }) {
+    onChange({ name: target.name, value: target.value });
+  }
 }

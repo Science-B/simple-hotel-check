@@ -1,19 +1,22 @@
+import { useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { getFavoritedHotels, removeHotel } from "../../store/favoritedHotels";
+import { updateHotels, allHotelsRemoved } from "../../store/favoritedHotels";
+
 import HotelCard from "../hotel-card/hotel-card";
 import s from "./favorited-card.module.scss";
 
 import upIcon from "../../icons/up.svg";
 import downIcon from "../../icons/down.svg";
 
-export default function FavoritedCard({
-  favoritedHotels,
-  city,
-  onClick,
-  onSortRate,
-  rateOption,
-  priceOption,
-  onSortPrice,
-  onClear,
-}) {
+export default function FavoritedCard() {
+  const dispatch = useDispatch();
+  const favoritedHotels = useSelector(getFavoritedHotels()).entities;
+  const [sortOptionRate, setSortOptionRate] = useState("asc");
+  const [sortOptionPrice, setSortOptionPrice] = useState("asc");
+
   return (
     <div className={s.favoritedCard}>
       <div className={s.formsGroup}>
@@ -23,23 +26,32 @@ export default function FavoritedCard({
             <div className={s.rateFilter}>
               <div
                 className={s.btn}
-                onClick={() => onSortRate(favoritedHotels)}
+                onClick={() => sortByRate(favoritedHotels)}
               >
                 <div className={s.filterText}>Рейтинг</div>
-                <img src={rateOption === "asc" ? downIcon : upIcon} />
+                <img
+                  alt=""
+                  src={sortOptionRate === "asc" ? downIcon : upIcon}
+                />
               </div>
             </div>
             <div className={s.priceFilter}>
               <div
-                onClick={() => onSortPrice(favoritedHotels)}
+                onClick={() => sortByPrice(favoritedHotels)}
                 className={s.btn}
               >
                 <div className={s.filterText}>Цена</div>
-                <img src={priceOption === "asc" ? downIcon : upIcon} />
+                <img
+                  alt=""
+                  src={sortOptionPrice === "asc" ? downIcon : upIcon}
+                />
               </div>
             </div>
             <div className={s.priceFilter}>
-              <div onClick={() => onClear()} className={s.btn}>
+              <div
+                onClick={() => dispatch(allHotelsRemoved())}
+                className={s.btn}
+              >
                 <div>Очистить</div>
               </div>
             </div>
@@ -53,18 +65,41 @@ export default function FavoritedCard({
               <HotelCard
                 isLiked={true}
                 name={hotel.label}
-                city={city}
                 days={hotel.days}
                 date={hotel.date}
                 id={hotel.id}
                 isFavorited={true}
                 price={hotel.price}
                 rate={hotel.rate}
-                onClick={onClick}
+                onClick={() => dispatch(removeHotel(hotel.id))}
               />
             ))}
         </div>
       </div>
     </div>
   );
+  function sortByRate(arr) {
+    const temp = [...arr];
+    if (sortOptionRate === "asc") {
+      temp.sort((a, b) => (a.rate > b.rate ? -1 : 1));
+      setSortOptionRate("desc");
+      dispatch(updateHotels(temp));
+    } else if (sortOptionRate === "desc") {
+      temp.sort((a, b) => (a.rate > b.rate ? 1 : -1));
+      setSortOptionRate("asc");
+      dispatch(updateHotels(temp));
+    }
+  }
+  function sortByPrice(arr) {
+    const temp = [...arr];
+    if (sortOptionPrice === "asc") {
+      temp.sort((a, b) => (a.price > b.price ? -1 : 1));
+      setSortOptionPrice("desc");
+      dispatch(updateHotels(temp));
+    } else if (sortOptionPrice === "desc") {
+      temp.sort((a, b) => (a.price > b.price ? 1 : -1));
+      setSortOptionPrice("asc");
+      dispatch(updateHotels(temp));
+    }
+  }
 }

@@ -1,13 +1,31 @@
+import { useDispatch, useSelector } from "react-redux";
+
+import { getHotels } from "../../store/hotels";
+
+import {
+  addHotel,
+  removeHotel,
+  getFavoritedHotels,
+} from "../../store/favoritedHotels";
+
 import Slider from "../slider/";
+
+import { displayDate } from "../../utils/displayDate";
+import { formatDate } from "../../utils/formatDate";
 
 import s from "./main-card.module.scss";
 
 import arrowIcon from "../../icons/arrow.svg";
 import HotelCard from "../hotel-card/hotel-card";
-import { displayDate } from "../../utils/displayDate";
-import { formatDate } from "../../utils/formatDate";
 
-export default function MainCard({ hotels, city, onClick, count, isLiked }) {
+export default function MainCard() {
+  const dispatch = useDispatch();
+  const favoritedHotelsIds = useSelector(getFavoritedHotels()).entities.map(
+    (el) => el.id
+  );
+  const hotels = useSelector(getHotels()).entities;
+  const city = useSelector(getHotels()).city;
+
   return (
     <div className={s.mainCard}>
       <div className={s.wrap}>
@@ -22,7 +40,7 @@ export default function MainCard({ hotels, city, onClick, count, isLiked }) {
         <Slider />
         <div className={s.favoritedCount}>
           <div>Добавлено в Избранное:</div>
-          <span className={s.count}>{count}</span>
+          <span className={s.count}>{favoritedHotelsIds.length}</span>
           <div> отеля</div>
         </div>
         <div className={s.hotels}>
@@ -34,8 +52,10 @@ export default function MainCard({ hotels, city, onClick, count, isLiked }) {
                 days={hotel.days}
                 date={hotel.date}
                 id={hotel.id}
-                onClick={onClick}
-                isLiked={isLiked}
+                onClick={handleClick}
+                isLiked={favoritedHotelsIds.some(
+                  (favoritedHotelsId) => favoritedHotelsId === hotel.id
+                )}
                 rate={hotel.rate}
                 price={hotel.price}
               />
@@ -47,4 +67,9 @@ export default function MainCard({ hotels, city, onClick, count, isLiked }) {
       </div>
     </div>
   );
+
+  function handleClick(id, isFavorited) {
+    const hotel = hotels.find((el) => el.id === id);
+    return isFavorited ? dispatch(removeHotel(id)) : dispatch(addHotel(hotel));
+  }
 }
