@@ -6,6 +6,7 @@ import s from "./hotel-card.module.scss";
 
 import logo from "../../icons/logo.svg";
 import heart from "../../icons/heart.svg";
+import { getRateStars } from "../../utils/getRateStars";
 export default function HotelCard({
   isFavorited,
   name,
@@ -17,6 +18,7 @@ export default function HotelCard({
   rate,
   price,
 }) {
+  console.log("rate", getRateStars(rate));
   return (
     <div>
       <div className={s.hotelCard}>
