@@ -17,11 +17,15 @@ const favoritedHotelsSlice = createSlice({
     allHotelsRemoved: (state) => {
       state.entities = [];
     },
+    hotelsUpdated: (state, action) => {
+      state.entities = action.payload;
+    },
   },
 });
 
 const { reducer: favoritedHotelsReducer, actions } = favoritedHotelsSlice;
-export const { hotelAdded, hotelRemoved, allHotelsRemoved } = actions;
+export const { hotelAdded, hotelRemoved, allHotelsRemoved, hotelsUpdated } =
+  actions;
 
 export const addHotel = (hotel) => (dispatch) => {
   dispatch(hotelAdded(hotel));
@@ -30,6 +34,10 @@ export const addHotel = (hotel) => (dispatch) => {
 export const removeHotel = (hotelId) => (dispatch) => {
   console.log("hotelId", hotelId);
   dispatch(hotelRemoved(hotelId));
+};
+
+export const updateHotels = (hotels) => (dispatch) => {
+  dispatch(hotelsUpdated(hotels));
 };
 
 export const getFavoritedHotels = () => (state) => state.favoritedHotels;

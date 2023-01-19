@@ -40,8 +40,8 @@ export default function HotelCard({
         <div className={classNames(s.priceGroup, isFavorited && s.isFavorited)}>
           <div>
             <svg
-              width="23"
-              height="20"
+              width="30"
+              height="30"
               viewBox="0 0 23 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

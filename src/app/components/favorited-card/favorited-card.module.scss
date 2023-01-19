@@ -34,7 +34,12 @@
   display: flex;
 }
 
+.filterText {
+  margin-right: 9px;
+}
+
 .btn {
+  display: flex;
   background: #ffffff;
   border: 1px solid #41522e;
   border-radius: 4px;
@@ -43,7 +48,16 @@
   margin-right: 8px;
 }
 
+.btn:hover {
+  background-color: #ebebeb;
+}
+
+.btn:active {
+  background-color: #e2e0e0;
+}
+
 .hotels {
+  margin-top: 32px;
   max-height: 210px;
   overflow: hidden;
   overflow-y: scroll;

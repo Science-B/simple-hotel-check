@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { Header } from "../components/header/header";
 import BookingCard from "../components/booking-card";
@@ -11,11 +11,15 @@ import { getHotels, loadHotelsList } from "../store/hotels";
 import s from "./main-page.module.scss";
 import {
   addHotel,
+  allHotelsRemoved,
   getFavoritedHotels,
   removeHotel,
+  updateHotels,
 } from "../store/favoritedHotels";
 
 export default function MainPage() {
+  const [sortOptionRate, setSortOptionRate] = useState("asc");
+  const [sortOptionPrice, setSortOptionPrice] = useState("asc");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadHotelsList());
@@ -29,7 +33,35 @@ export default function MainPage() {
       ? dispatch(removeHotel(favoritedHotel[0].id))
       : dispatch(addHotel(favoritedHotel[0]));
   };
-  const handleToggleFavorited = () => {};
+
+  const sortByRate = (arr) => {
+    const temp = [...arr];
+    if (sortOptionRate === "asc") {
+      temp.sort((a, b) => (a.rate > b.rate ? -1 : 1));
+      setSortOptionRate("desc");
+      dispatch(updateHotels(temp));
+    } else if (sortOptionRate === "desc") {
+      temp.sort((a, b) => (a.rate > b.rate ? 1 : -1));
+      setSortOptionRate("asc");
+      dispatch(updateHotels(temp));
+    }
+  };
+  const sortByPrice = (arr) => {
+    const temp = [...arr];
+    if (sortOptionPrice === "asc") {
+      temp.sort((a, b) => (a.price > b.price ? -1 : 1));
+      setSortOptionPrice("desc");
+      dispatch(updateHotels(temp));
+    } else if (sortOptionPrice === "desc") {
+      temp.sort((a, b) => (a.price > b.price ? 1 : -1));
+      setSortOptionPrice("asc");
+      dispatch(updateHotels(temp));
+    }
+  };
+
+  const handleClear = () => {
+    dispatch(allHotelsRemoved());
+  };
   return (
     <div>
       <Header />
@@ -39,6 +71,11 @@ export default function MainPage() {
           <FavoritedCard
             favoritedHotels={favoritedHotels.entities}
             onClick={handleClick}
+            onSortRate={sortByRate}
+            rateOption={sortOptionRate}
+            priceOption={sortOptionPrice}
+            onSortPrice={sortByPrice}
+            onClear={handleClear}
           />
         </div>
         <MainCard
