@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { getCurrentUser } from "../store/user";
+import { getCurrentUser } from "../redux/store/user";
 import { useSelector } from "react-redux";
 
 export default function RequireAuth({ children }) {

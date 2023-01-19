@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { getHotels } from "../../store/hotels";
+import { getHotels } from "../../redux/store/hotels";
 
 import {
   addHotel,
   removeHotel,
   getFavoritedHotels,
-} from "../../store/favoritedHotels";
+} from "../../redux/store/favoritedHotels";
 
 import Slider from "../slider/";
 

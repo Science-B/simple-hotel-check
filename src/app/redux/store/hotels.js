@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { formatDate } from "../utils/formatDate";
+import { formatDate } from "../../utils/formatDate";
+import { getRandomInt } from "../../utils/getRandomInt";
 
-import hotelService from "../services/hotels-service";
-import { getRandomInt } from "../utils/getRandomInt";
+import hotelService from "../../services/hotels-service";
 
 const hotelsSlice = createSlice({
   name: "hotels",

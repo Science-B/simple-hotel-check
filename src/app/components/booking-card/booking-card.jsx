@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import TextField from "../form/text-field";
 import Button from "../button/button";
 
-import { loadHotelsList } from "../../store/hotels";
+import { loadHotelsList } from "../../redux/store/hotels";
 
 import { formatDate } from "../../utils/formatDate";
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 
-import { loggedIn } from "../../store/user";
+import { loggedIn } from "../../redux/store/user";
 
 import TextField from "../form/text-field";
 import Button from "../button";

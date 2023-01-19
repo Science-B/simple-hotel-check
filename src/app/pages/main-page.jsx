@@ -7,7 +7,7 @@ import BookingCard from "../components/booking-card";
 import FavoritedCard from "../components/favorited-card/favorited-card";
 import MainCard from "../components/main-card/main-card";
 
-import { loadHotelsList } from "../store/hotels";
+import { loadHotelsList } from "../redux/store/hotels";
 
 import s from "./main-page.module.scss";
 
