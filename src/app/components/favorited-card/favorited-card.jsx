@@ -2,8 +2,14 @@ import { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getFavoritedHotels, removeHotel } from "../../store/favoritedHotels";
-import { updateHotels, allHotelsRemoved } from "../../store/favoritedHotels";
+import {
+  getFavoritedHotels,
+  removeHotel,
+} from "../../redux/store/favoritedHotels";
+import {
+  updateHotels,
+  allHotelsRemoved,
+} from "../../redux/store/favoritedHotels";
 
 import HotelCard from "../hotel-card/hotel-card";
 import s from "./favorited-card.module.scss";

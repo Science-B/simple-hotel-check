@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import TextField from "../form/text-field";
 import Button from "../button/button";
 
-import { loadHotelsList } from "../../redux/store/hotels";
+import { hotelsRequested, loadHotelsList } from "../../redux/store/hotels";
 
 import { formatDate } from "../../utils/formatDate";
 
@@ -73,7 +73,6 @@ export default function BookingCard() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(loadHotelsList(data.location, data.days, data.date));
-    console.log(data);
+    dispatch(hotelsRequested(data));
   }
 }

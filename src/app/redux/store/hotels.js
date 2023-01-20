@@ -1,15 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { formatDate } from "../../utils/formatDate";
-import { getRandomInt } from "../../utils/getRandomInt";
-
-import hotelService from "../../services/hotels-service";
-
 const hotelsSlice = createSlice({
   name: "hotels",
   initialState: {
     entities: [],
-    city: "Москва",
+    city: "",
     isLoading: true,
     error: null,
   },
@@ -30,33 +25,7 @@ const hotelsSlice = createSlice({
 });
 
 const { reducer: hotelsReducer, actions } = hotelsSlice;
-const { hotelsRequested, hotelsRecived, hotelsRequestFailed } = actions;
-
-export const loadHotelsList = (city, days, date) => async (dispatch) => {
-  dispatch(hotelsRequested());
-  try {
-    const { results } = await hotelService.get(city ? city : "Москва");
-
-    const hotels = results.hotels.map((el) => {
-      return {
-        ...el,
-        rate: getRandomInt(1, 5),
-        date: date ? date : formatDate(),
-        days: days ? days : "1",
-        price: getRandomInt(15, 35) + " " + getRandomInt(111, 999),
-      };
-    });
-
-    dispatch(
-      hotelsRecived({
-        ...{ hotels },
-        city,
-      })
-    );
-  } catch (error) {
-    dispatch(hotelsRequestFailed(error.message));
-  }
-};
+export const { hotelsRequested, hotelsRecived, hotelsRequestFailed } = actions;
 
 export const getHotels = () => (state) => state.hotels;
 

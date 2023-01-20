@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loggedOut } from "../../redux/store/user";
-import { allHotelsRemoved } from "../../store/favoritedHotels";
+import { allHotelsRemoved } from "../../redux/store/favoritedHotels";
 
 import s from "./header.module.scss";
 

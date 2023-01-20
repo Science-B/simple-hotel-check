@@ -1,4 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import createSagaMiddleware from "@redux-saga/core";
+import rootSaga from "./saga/hotels";
 import {
   persistStore,
   persistReducer,
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   favoritedHotels: favoritedHotelsReducer,
 });
 
+const sagaMiddleWare = createSagaMiddleware();
+
 const persistConfig = {
   key: "root",
   storage,
@@ -37,8 +41,9 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(sagaMiddleWare),
 });
 
 export const persistor = persistStore(store);
+sagaMiddleWare.run(rootSaga);
 export default store;

@@ -10,8 +10,6 @@ const favoritedHotelsSlice = createSlice({
       state.entities.push(action.payload);
     },
     hotelRemoved: (state, action) => {
-      console.log("action payload", action.payload);
-      console.log("state entities", state.entities);
       state.entities = state.entities.filter((h) => h.id !== action.payload);
     },
     allHotelsRemoved: (state) => {
